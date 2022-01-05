@@ -15,6 +15,7 @@ let startButton = document.querySelector(".start-item");
 let result = document.querySelector(".result");
 let mainContent = document.querySelector(".main-content");
 let highscore = document.querySelector(".hsHeading");
+let scores = document.querySelector(".scores");
 
 let selectedQ = "";
 let selectedA = [];
@@ -161,7 +162,7 @@ function getAnswer() {
 }
 function showHighscores() {
     renderBlankScreen();
-    initials.setAttribute("style", "display: inline; width: 77%;");
+    scores.setAttribute("style", "display: inline;");
     clear.setAttribute("style", "display: inline; width: 50%;");
     highscore.setAttribute("style", "display: inline; width: 100%; padding-bottom: 20px");
     backButton.setAttribute("style", "display: inline; width: 25%;");
@@ -173,6 +174,14 @@ function showHighscores() {
 function isCorrect() {
     result.textContent = "Correct!";
     result.setAttribute("style", "display: inline;");
+}
+function setHighscore() {
+    if(complete) {
+       localStorage.setItem("score", count);
+    }
+}
+function getHighscore() {
+    userScore = localStorage.getItem("score");
 }
 function isIncorrect() {
     result.textContent = "Incorrect";
@@ -201,5 +210,6 @@ answer4.addEventListener("click", function () {
    getAnswer(); 
    generateQandA();
 });
+
 viewHighscores.addEventListener("click", showHighscores);
 backButton.addEventListener("click", homescreen);
