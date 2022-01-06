@@ -13,28 +13,47 @@
     <header>
         <h1>Coding Quiz</h1>
     </header>
+
     <section class="info-header">
-        <p class="highscores">View Highscores</p>
-        <p class="score">Score: 100</p>
+        <p class="highscores-header">View Highscores</p>
+        <p class="score-header">Score: 100</p>
     </section>
-    <section class="main-content">
-        <h2 class="heading">Coding Quiz</h2>
-        <h2 class="home-screen question"></h2>
-        <p class="info">Try to awswer the questions but be careful, if you guess wrong youll lose 10 points.<br>Your
-            score starts at 100 and will slowly countdown, the more points you have the better!</p>
-        <div></div>
-        <button class="start-item">Start Quiz</button>
-        <button class="home-screen answer item1">Question 1</button>
-        <button class="home-screen answer item2">Question 2</button>
-        <button class="home-screen answer item3">Question 3</button>
-        <button class="home-screen answer item4">Question 4</button>
-        <p class="home-screen result"></p>
-        <h2 class="home-screen high-scores hsHeading">Highscores</h2>
-        <p class="home-screen scores">Scores</p>
-        <input class="home-screen high-scores initials" type="text">
-        <button class="home-screen high-scores submit">Submit</button>
-        <button class="home-screen high-scores clear">Clear Highscores</button>
-        <button class="home-screen high-scores back-button">Back</button>
+    <section class="content">
+        <div class="home-screen">
+            <h2 class="heading">Coding Quiz</h2>
+            <p class="info">Try to awswer the questions but be careful, if you guess wrong youll lose 10 points.<br>Your
+                score starts at 100 and will slowly countdown, the more points you have the better!</p>
+            <button class="start-button">Start Quiz</button>
+        </div>
+
+        <div class="questions-screen">
+            <h2 class="question">Question</h2>
+            <button class="question-button question-1">Question 1</button>
+            <button class="question-button question-2">Question 2</button>
+            <button class="question-button question-3">Question 3</button>
+            <button class="question-button question-4">Question 4</button>
+        </div>
+
+        <div class="view-highscores-screen">
+            <h2 class="highscores-heading">Highscores</h2>
+            <p class="result-list"></p>
+            <button class="clear-highscores">Clear Highscores</button>
+            <button class="back-button">Back</button>
+        </div>
+
+        <div class="enter-highscores-screen">
+            <div class="row1">
+                <h2 class="highscores-heading">Highscores</h2>
+            </div>
+            <div class="row2">
+                <input class="enter-initials" type="text">
+                <button class="submit-button">Submit</button>
+            </div>
+            <div class="row3">
+                <button class="clear-highscores">Clear Highscores</button>
+                <button class="back-button">Back</button>
+            </div>
+        </div>
     </section>
 
     <script src="assets/js/script.js"></script>
