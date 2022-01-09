@@ -209,6 +209,7 @@ function generateQuestion() {
 function init() {
     renderStartScreen();
     generateQuestion();
+    getHighscores();
 }
 
 function startTimer() {
@@ -223,19 +224,19 @@ function startTimer() {
 }
 
 function setHighscore() {
+
+    
     highscores.push(count);
     user.push(enterInitials.value);
-   localStorage.setItem(("highscore", JSON.stringify(highscores));
+   localStorage.setItem("highscore", JSON.stringify(highscores));
    localStorage.setItem("username", JSON.stringify(user));
 
-    localStorage.getItem("highscore");
-    localStorage.getItem("user");
-
+}
+function getHighscores() {
+    highscores = JSON.parse(localStorage.getItem("highscore")) || [];
+    user = JSON.parse(localStorage.getItem("username")) || [];
 }
 
-// function getHighscores() {
-
-// }
 
 function renderStartScreen() {
     startScreen.setAttribute("style", "display: flex;");
