@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color: darkcyan;
+    background-color: rgb(25, 50, 50);
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -47,9 +47,15 @@ h1 {
     flex-direction: column;
     align-items: center;
 }
-.row1, .row2, .row3 {
+.row1, .row2 {
     display: flex;
     justify-content: space-between;
+    width: 500px;
+    margin-bottom: 20px;
+}
+.row3 {
+    display: flex;
+    justify-content: flex-end;
     width: 500px;
     margin-bottom: 20px;
 }
@@ -79,9 +85,16 @@ h1 {
     margin: 25px 0;
 }
 
-.question-button {
+.answer-button {
     height: 40px;
     margin-bottom: 40px;
     width: 400px;
 
+}
+.result-outcome {
+    display: none;
+}
+.highscores-header:hover {
+    cursor: pointer;
+    color: white;
 }
