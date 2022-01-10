@@ -230,8 +230,8 @@ function startTimer() {
             clearInterval(timer);
             renderEnterHighscoreScreen();
         }
-        
-        
+
+
     }, 1000);
 }
 
@@ -249,149 +249,149 @@ function getHighscores() {
     }).join("");
 }
 
-    function setHighscore() {
-        highscores = getScoresFromStorage();
-        let score = {
-            user: enterInitials.value,
-            score: count
-        }
-        highscores.push(score);
-        localStorage.setItem("highscores", JSON.stringify(highscores));
+function setHighscore() {
+    highscores = getScoresFromStorage();
+    let score = {
+        user: enterInitials.value,
+        score: count
     }
-    // Renders the start screen section and hides everything else
-    function renderStartScreen() {
-        startScreen.setAttribute("style", "display: flex;");
-        questionsScreen.setAttribute("style", "display: none;");
-        viewHighscoresScreen.setAttribute("style", "display: none;");
-        enterHighscoresScreen.setAttribute("style", "display: none;");
-        timerElement.textContent = "Score: 100";
-    }
-    // Renders the questions screen section and hides everything else
-    function renderQuestionScreen() {
-        questionsScreen.setAttribute("style", "display: flex;");
-        startScreen.setAttribute("style", "display: none;");
-        viewHighscoresScreen.setAttribute("style", "display: none;");
-        enterHighscoresScreen.setAttribute("style", "display: none;");
-    }
-    // Renders the view highscore screen section and hides everything else
-    function renderViewHighscoreScreen() {
-        getHighscores();
-        viewHighscoresScreen.setAttribute("style", "display: flex;");
-        startScreen.setAttribute("style", "display: none;");
-        questionsScreen.setAttribute("style", "display: none;");
-        enterHighscoresScreen.setAttribute("style", "display: none;");
-    }
-    // Renders the enter highscore screen section and hides everything else
-    function renderEnterHighscoreScreen() {
-        enterHighscoresScreen.setAttribute("style", "display: flex;");
-        startScreen.setAttribute("style", "display: none;");
-        questionsScreen.setAttribute("style", "display: none;");
-        viewHighscoresScreen.setAttribute("style", "display: none;");
-        complete = false;
-        currentQuestion = 0;
-        generateQuestion();
-    }
-    // This functions calls the renderQuestions function, timer fucntion and begins the quiz
-    function startQuiz() {
-        count = 100;
-        renderQuestionScreen();
-        startTimer();
-        resultOutcome.setAttribute("style", "display: none;");
-    }
-    // This checks if an answer is correct and display correct if it is
-    function isCorrect() {
-        resultOutcome.textContent = "CORRECT";
-        resultOutcome.setAttribute("style", "display: inline;");
-    }
-    // This checks if an answer is incorrect and display incorrect if it is
-    function isIncorrect() {
-        resultOutcome.textContent = "INCORRECT";
-        resultOutcome.setAttribute("style", "display: inline;");
-        count = count - 5;
-    }
-    function clearHighscores() {
-        localStorage.removeItem("highscores");
-    }
+    highscores.push(score);
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+}
+// Renders the start screen section and hides everything else
+function renderStartScreen() {
+    startScreen.setAttribute("style", "display: flex;");
+    questionsScreen.setAttribute("style", "display: none;");
+    viewHighscoresScreen.setAttribute("style", "display: none;");
+    enterHighscoresScreen.setAttribute("style", "display: none;");
+    timerElement.textContent = "Score: 100";
+}
+// Renders the questions screen section and hides everything else
+function renderQuestionScreen() {
+    questionsScreen.setAttribute("style", "display: flex;");
+    startScreen.setAttribute("style", "display: none;");
+    viewHighscoresScreen.setAttribute("style", "display: none;");
+    enterHighscoresScreen.setAttribute("style", "display: none;");
+}
+// Renders the view highscore screen section and hides everything else
+function renderViewHighscoreScreen() {
+    getHighscores();
+    viewHighscoresScreen.setAttribute("style", "display: flex;");
+    startScreen.setAttribute("style", "display: none;");
+    questionsScreen.setAttribute("style", "display: none;");
+    enterHighscoresScreen.setAttribute("style", "display: none;");
+}
+// Renders the enter highscore screen section and hides everything else
+function renderEnterHighscoreScreen() {
+    enterHighscoresScreen.setAttribute("style", "display: flex;");
+    startScreen.setAttribute("style", "display: none;");
+    questionsScreen.setAttribute("style", "display: none;");
+    viewHighscoresScreen.setAttribute("style", "display: none;");
+    complete = false;
+    currentQuestion = 0;
+    generateQuestion();
+}
+// This functions calls the renderQuestions function, timer fucntion and begins the quiz
+function startQuiz() {
+    count = 100;
+    renderQuestionScreen();
+    startTimer();
+    resultOutcome.setAttribute("style", "display: none;");
+}
+// This checks if an answer is correct and display correct if it is
+function isCorrect() {
+    resultOutcome.textContent = "CORRECT";
+    resultOutcome.setAttribute("style", "display: inline;");
+}
+// This checks if an answer is incorrect and display incorrect if it is
+function isIncorrect() {
+    resultOutcome.textContent = "INCORRECT";
+    resultOutcome.setAttribute("style", "display: inline;");
+    count = count - 5;
+}
+function clearHighscores() {
+    localStorage.removeItem("highscores");
+}
 
-    // Calls startQuiz fucntion when the start quiz button is pressed
-    startButton.addEventListener("click", startQuiz);
-    // Displays highscores screen and restarts quiz data, including the timer
-    viewHighscores.addEventListener("click", function () {
-        renderViewHighscoreScreen();
-        clearInterval(timer);
-        count = 100;
-        timerElement.textContent = "Score: " + count;
-    });
-    // Renders start screen when back button is pressed
-    backButtonEnter.addEventListener("click", function () {
-        renderStartScreen();
+// Calls startQuiz fucntion when the start quiz button is pressed
+startButton.addEventListener("click", startQuiz);
+// Displays highscores screen and restarts quiz data, including the timer
+viewHighscores.addEventListener("click", function () {
+    renderViewHighscoreScreen();
+    clearInterval(timer);
+    count = 100;
+    timerElement.textContent = "Score: " + count;
+});
+// Renders start screen when back button is pressed
+backButtonEnter.addEventListener("click", function () {
+    renderStartScreen();
 
-    });
-    // Renders start screen when back button is pressed
-    backButtonView.addEventListener("click", function () {
-        renderStartScreen();
-        currentQuestion = 0;
+});
+// Renders start screen when back button is pressed
+backButtonView.addEventListener("click", function () {
+    renderStartScreen();
+    currentQuestion = 0;
+    generateQuestion();
+});
+// Will call either isCorrect or isIncorrect based on your entered answer
+answerOne.addEventListener("click", function () {
+    if (answerOne.textContent == correctAnswer) {
+        isCorrect();
         generateQuestion();
-    });
-    // Will call either isCorrect or isIncorrect based on your entered answer
-    answerOne.addEventListener("click", function () {
-        if (answerOne.textContent == correctAnswer) {
-            isCorrect();
-            generateQuestion();
-        } else {
-            isIncorrect();
-            generateQuestion();
-        }
-    });
-    // Will call either isCorrect or isIncorrect based on your entered answer
-    answerTwo.addEventListener("click", function () {
-        if (answerTwo.textContent == correctAnswer) {
-            isCorrect();
-            generateQuestion();
-        } else {
-            isIncorrect();
-            generateQuestion();
-        }
-    });
-    // Will call either isCorrect or isIncorrect based on your entered answer
-    answerThree.addEventListener("click", function () {
-        if (answerThree.textContent == correctAnswer) {
-            isCorrect();
-            generateQuestion();
-        } else {
-            isIncorrect();
-            generateQuestion();
-        }
-    });
-    // Will call either isCorrect or isIncorrect based on your entered answer
-    answerFour.addEventListener("click", function () {
-        if (answerFour.textContent == correctAnswer) {
-            isCorrect();
-            generateQuestion();
-        } else {
-            isIncorrect();
-            generateQuestion();
-        }
-    });
-    // Saves user/score to the localStorage
-    submitButton.addEventListener("click", function () {
-         setHighscore();
-         renderViewHighscoreScreen();
-         getHighscores();
-       
-    })
-    highscoresCl.addEventListener("click", function() {
-        clearHighscores();
-        renderViewHighscoreScreen();
-    });
-    stopQuiz.addEventListener("click", function() {
-        currentQuestion = 0;
+    } else {
+        isIncorrect();
         generateQuestion();
-        clearInterval(timer);
-        count = 100;
-        timerElement.textContent = "Score: " + count;
-        renderStartScreen();
-    })
-    // Calls init function to get quiz ready
-    init();
+    }
+});
+// Will call either isCorrect or isIncorrect based on your entered answer
+answerTwo.addEventListener("click", function () {
+    if (answerTwo.textContent == correctAnswer) {
+        isCorrect();
+        generateQuestion();
+    } else {
+        isIncorrect();
+        generateQuestion();
+    }
+});
+// Will call either isCorrect or isIncorrect based on your entered answer
+answerThree.addEventListener("click", function () {
+    if (answerThree.textContent == correctAnswer) {
+        isCorrect();
+        generateQuestion();
+    } else {
+        isIncorrect();
+        generateQuestion();
+    }
+});
+// Will call either isCorrect or isIncorrect based on your entered answer
+answerFour.addEventListener("click", function () {
+    if (answerFour.textContent == correctAnswer) {
+        isCorrect();
+        generateQuestion();
+    } else {
+        isIncorrect();
+        generateQuestion();
+    }
+});
+// Saves user/score to the localStorage
+submitButton.addEventListener("click", function () {
+    setHighscore();
+    renderViewHighscoreScreen();
+    getHighscores();
+    enterInitials.value = "";
+})
+highscoresCl.addEventListener("click", function () {
+    clearHighscores();
+    renderViewHighscoreScreen();
+});
+stopQuiz.addEventListener("click", function () {
+    currentQuestion = 0;
+    generateQuestion();
+    clearInterval(timer);
+    count = 100;
+    timerElement.textContent = "Score: " + count;
+    renderStartScreen();
+})
+// Calls init function to get quiz ready
+init();
 

@@ -1,3 +1,4 @@
+/* Stores themed colors for use */
 :root {
     --hover: #AED6F1;
     --mainColor: #5DADE2;
@@ -52,15 +53,18 @@ h1 {
     flex-direction: column;
     align-items: center;
 }
+
 .row1, .row2 {
     display: flex;
     justify-content: space-between;
     width: 500px;
     margin-bottom: 20px;
 }
+
 .row1 {
     margin-bottom: 0;
 }
+
 .row3 {
     display: flex;
     justify-content: flex-end;
@@ -75,6 +79,7 @@ h1 {
     font-size: 32px;
     text-align: center;
 }
+
 .clear-highscores {
     width: 150px;
     height: 40px;
@@ -82,7 +87,9 @@ h1 {
     color: white;
     border: none;
     border-radius: 25px;
+    margin-top: 20px;
 }
+
 .submit-button, .back-button{
     width: 100px;
     height: 40px;
@@ -92,6 +99,10 @@ h1 {
     color: white;
     border: none;
     border-radius: 25px;
+}
+
+.back-button {
+    margin-top: 20px;
 }
 
 .highscores-heading {
@@ -108,11 +119,12 @@ h1 {
     border: none;
     border-radius: 25px;
 }
-
+/* Adds the chnage of color when hovered over */
 .start-button:hover, .answer-button:hover, .submit-button:hover, .back-button:hover, .clear-highscores:hover {
     background-color: var(--hover);
     cursor: pointer;
 }
+/* Adds styling to answer buttons */
 .answer-button {
     height: 40px;
     margin-bottom: 40px;
@@ -122,6 +134,7 @@ h1 {
     border: none;
     border-radius: 25px;
 }
+
 .result-outcome {
     display: none;
     background-color: grey;
@@ -129,19 +142,22 @@ h1 {
     border-radius: 20px;
     padding: 10px;
 }
+
 .stop-quiz {
     padding-right: 43px;
 }
+/* Adds the chnage of color when hovered over */
 .highscores-header:hover, .stop-quiz:hover {
     cursor: pointer;
     color: white;
 }
-/* Positioning of highscores table */
+
 .result-list {
     border-radius: 10px;
     width: 500px;
     margin-bottom: 50px;
 }
+
 .highscore {
     text-align: center;
     text-decoration: none;
@@ -149,10 +165,12 @@ h1 {
     font-size: 20px;
     list-style-type: none;
 }
+
 .container {
     display: flex;
     flex-direction: row;
 }
+
 .result-user, .result.score {
     padding-right: 160px;
 }
