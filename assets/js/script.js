@@ -10,7 +10,8 @@ let backButtonView = document.getElementById("back-button-view");
 let submitButton = document.querySelector(".submit-button");
 let viewHighscores = document.querySelector(".highscores-header");
 let enterInitials = document.querySelector(".enter-initials");
-let resultList = document.querySelector(".result-list");
+let resultUser = document.querySelector(".result-user");
+let resultScore = document.querySelector(".result-score");
 let highscoresCl = document.querySelector(".clear-highscores");
 let stopQuiz = document.querySelector(".stop-quiz");
 
@@ -221,21 +222,35 @@ function startTimer() {
     timer = setInterval(function () {
         count--;
         timerElement.textContent = "Score: " + count;
+        if (count < 0) {
+            count = 0;
+        }
         if (count <= 0 || complete === true) {
+            timerElement.textContent = "Score: " + count;
             clearInterval(timer);
             renderEnterHighscoreScreen();
         }
+        
+        
     }, 1000);
 }
 
+function getScoresFromStorage() {
+    return JSON.parse(localStorage.getItem("highscores")) || [];
+}
+
 function getHighscores() {
-    highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-    resultList.innerHTML = highscores.map(score => {
-        return `<li class = "highscore">${score.user}-${score.score}</li>`;
+    highscores = getScoresFromStorage();
+    resultUser.innerHTML = highscores.map(score => {
+        return `<li class = "highscore">${score.user}</li>`;
+    }).join("");
+    resultScore.innerHTML = highscores.map(score => {
+        return `<li class = "highscore">${score.score}</li>`;
     }).join("");
 }
 
     function setHighscore() {
+        highscores = getScoresFromStorage();
         let score = {
             user: enterInitials.value,
             score: count
@@ -310,10 +325,13 @@ function getHighscores() {
     // Renders start screen when back button is pressed
     backButtonEnter.addEventListener("click", function () {
         renderStartScreen();
+
     });
     // Renders start screen when back button is pressed
     backButtonView.addEventListener("click", function () {
         renderStartScreen();
+        currentQuestion = 0;
+        generateQuestion();
     });
     // Will call either isCorrect or isIncorrect based on your entered answer
     answerOne.addEventListener("click", function () {
@@ -367,6 +385,8 @@ function getHighscores() {
         renderViewHighscoreScreen();
     });
     stopQuiz.addEventListener("click", function() {
+        currentQuestion = 0;
+        generateQuestion();
         clearInterval(timer);
         count = 100;
         timerElement.textContent = "Score: " + count;

@@ -58,6 +58,9 @@ h1 {
     width: 500px;
     margin-bottom: 20px;
 }
+.row1 {
+    margin-bottom: 0;
+}
 .row3 {
     display: flex;
     justify-content: flex-end;
@@ -145,4 +148,11 @@ h1 {
     padding: 2px;
     font-size: 20px;
     list-style-type: none;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+.result-user, .result.score {
+    padding-right: 160px;
 }
