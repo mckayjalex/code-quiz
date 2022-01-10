@@ -1,3 +1,4 @@
+// Linking to HTML
 let startScreen = document.querySelector(".home-screen");
 let questionsScreen = document.querySelector(".questions-screen");
 let viewHighscoresScreen = document.querySelector(".view-highscores-screen");
@@ -9,6 +10,9 @@ let backButtonView = document.getElementById("back-button-view");
 let submitButton = document.querySelector(".submit-button");
 let viewHighscores = document.querySelector(".highscores-header");
 let enterInitials = document.querySelector(".enter-initials");
+let resultList = document.querySelector(".result-list");
+let highscoresCl = document.querySelector(".clear-highscores");
+let stopQuiz = document.querySelector(".stop-quiz");
 
 let selectedQuestion = document.querySelector(".question");
 let answerOne = document.querySelector(".answer-1");
@@ -16,7 +20,7 @@ let answerTwo = document.querySelector(".answer-2");
 let answerThree = document.querySelector(".answer-3");
 let answerFour = document.querySelector(".answer-4");
 let resultOutcome = document.querySelector(".result-outcome");
-
+// Global Variables
 let enteredAnswer;
 let timer;
 let count;
@@ -24,9 +28,9 @@ let currentQuestion = 0;
 let correctAnswer;
 let complete = false;
 let selectedAnswer;
-let highscores = [];
-let user = [];
+let highscores;
 
+// Object that stores all the questions and answers
 let questions = {
     questionZero: {
         title: "Who invented Javascript?",
@@ -119,7 +123,7 @@ let questions = {
         correctAnswer: "body{color:black;}"
     }
 };
-
+// Generates a question and adds it to HTML, then passes to the next question
 function generateQuestion() {
     if (currentQuestion == 0) {
         selectedQuestion.textContent = questions.questionZero.title;
@@ -201,17 +205,18 @@ function generateQuestion() {
         answerFour.textContent = questions.questionNine.correctAnswer;
         correctAnswer = questions.questionNine.correctAnswer;
         currentQuestion = 10;
-    } else if(currentQuestion == 10) {
+    } else if (currentQuestion == 10) {
         renderEnterHighscoreScreen();
         complete = true;
     }
 }
+// Calls the initial functions needed for the quiz to work on page load
 function init() {
     renderStartScreen();
     generateQuestion();
     getHighscores();
 }
-
+// Starts and stops timer
 function startTimer() {
     timer = setInterval(function () {
         count--;
@@ -223,129 +228,150 @@ function startTimer() {
     }, 1000);
 }
 
-function setHighscore() {
-
-    
-    highscores.push(count);
-    user.push(enterInitials.value);
-   localStorage.setItem("highscore", JSON.stringify(highscores));
-   localStorage.setItem("username", JSON.stringify(user));
-
-}
 function getHighscores() {
-    highscores = JSON.parse(localStorage.getItem("highscore")) || [];
-    user = JSON.parse(localStorage.getItem("username")) || [];
+    highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    resultList.innerHTML = highscores.map(score => {
+        return `<li class = "highscore">${score.user}-${score.score}</li>`;
+    }).join("");
 }
 
-
-function renderStartScreen() {
-    startScreen.setAttribute("style", "display: flex;");
-    questionsScreen.setAttribute("style", "display: none;");
-    viewHighscoresScreen.setAttribute("style", "display: none;");
-    enterHighscoresScreen.setAttribute("style", "display: none;");
-    timerElement.textContent = "Score: 100";
-}
-
-function renderQuestionScreen() {
-    questionsScreen.setAttribute("style", "display: flex;");
-    startScreen.setAttribute("style", "display: none;");
-    viewHighscoresScreen.setAttribute("style", "display: none;");
-    enterHighscoresScreen.setAttribute("style", "display: none;");
-}
-
-function renderViewHighscoreScreen() {
-    viewHighscoresScreen.setAttribute("style", "display: flex;");
-    startScreen.setAttribute("style", "display: none;");
-    questionsScreen.setAttribute("style", "display: none;");
-    enterHighscoresScreen.setAttribute("style", "display: none;");
-}
-
-function renderEnterHighscoreScreen() {
-    enterHighscoresScreen.setAttribute("style", "display: flex;");
-    startScreen.setAttribute("style", "display: none;");
-    questionsScreen.setAttribute("style", "display: none;");
-    viewHighscoresScreen.setAttribute("style", "display: none;");
-    complete = false;
-    currentQuestion = 0;
-    generateQuestion();
-}
-
-function startQuiz() {
-    count = 100;
-    renderQuestionScreen();
-    startTimer();
-    resultOutcome.setAttribute("style", "display: none;");
-}
-
-function isCorrect() {
-    resultOutcome.textContent = "CORRECT";
-    resultOutcome.setAttribute("style", "display: inline;");
-}
-
-function isIncorrect() {
-    resultOutcome.textContent = "INCORRECT";
-    resultOutcome.setAttribute("style", "display: inline;");
-    count = count - 5;
-}
-
-
-startButton.addEventListener("click", startQuiz);
-
-viewHighscores.addEventListener("click", function () {
-    renderViewHighscoreScreen(); 
-});
-
-backButtonEnter.addEventListener("click", function () {
-    renderStartScreen();
-});
-
-backButtonView.addEventListener("click", function () {
-    renderStartScreen();
-});
-
-answerOne.addEventListener("click", function () {
-    if (answerOne.textContent == correctAnswer) {
-        isCorrect();
-        generateQuestion();
-    } else {
-        isIncorrect();
+    function setHighscore() {
+        let score = {
+            user: enterInitials.value,
+            score: count
+        }
+        highscores.push(score);
+        localStorage.setItem("highscores", JSON.stringify(highscores));
+    }
+    // Renders the start screen section and hides everything else
+    function renderStartScreen() {
+        startScreen.setAttribute("style", "display: flex;");
+        questionsScreen.setAttribute("style", "display: none;");
+        viewHighscoresScreen.setAttribute("style", "display: none;");
+        enterHighscoresScreen.setAttribute("style", "display: none;");
+        timerElement.textContent = "Score: 100";
+    }
+    // Renders the questions screen section and hides everything else
+    function renderQuestionScreen() {
+        questionsScreen.setAttribute("style", "display: flex;");
+        startScreen.setAttribute("style", "display: none;");
+        viewHighscoresScreen.setAttribute("style", "display: none;");
+        enterHighscoresScreen.setAttribute("style", "display: none;");
+    }
+    // Renders the view highscore screen section and hides everything else
+    function renderViewHighscoreScreen() {
+        getHighscores();
+        viewHighscoresScreen.setAttribute("style", "display: flex;");
+        startScreen.setAttribute("style", "display: none;");
+        questionsScreen.setAttribute("style", "display: none;");
+        enterHighscoresScreen.setAttribute("style", "display: none;");
+    }
+    // Renders the enter highscore screen section and hides everything else
+    function renderEnterHighscoreScreen() {
+        enterHighscoresScreen.setAttribute("style", "display: flex;");
+        startScreen.setAttribute("style", "display: none;");
+        questionsScreen.setAttribute("style", "display: none;");
+        viewHighscoresScreen.setAttribute("style", "display: none;");
+        complete = false;
+        currentQuestion = 0;
         generateQuestion();
     }
-});
-
-answerTwo.addEventListener("click", function () {
-    if (answerTwo.textContent == correctAnswer) {
-        isCorrect();
-        generateQuestion();
-    } else {
-        isIncorrect();
-        generateQuestion();
+    // This functions calls the renderQuestions function, timer fucntion and begins the quiz
+    function startQuiz() {
+        count = 100;
+        renderQuestionScreen();
+        startTimer();
+        resultOutcome.setAttribute("style", "display: none;");
     }
-});
-
-answerThree.addEventListener("click", function () {
-    if (answerThree.textContent == correctAnswer) {
-        isCorrect();
-        generateQuestion();
-    } else {
-        isIncorrect();
-        generateQuestion();
-    } 
-});
-
-answerFour.addEventListener("click", function () {
-    if (answerFour.textContent == correctAnswer) {
-        isCorrect();
-        generateQuestion();
-    } else {
-        isIncorrect();
-        generateQuestion();
+    // This checks if an answer is correct and display correct if it is
+    function isCorrect() {
+        resultOutcome.textContent = "CORRECT";
+        resultOutcome.setAttribute("style", "display: inline;");
     }
-});
+    // This checks if an answer is incorrect and display incorrect if it is
+    function isIncorrect() {
+        resultOutcome.textContent = "INCORRECT";
+        resultOutcome.setAttribute("style", "display: inline;");
+        count = count - 5;
+    }
+    function clearHighscores() {
+        localStorage.removeItem("highscores");
+    }
 
-submitButton.addEventListener("click", function() {
-    setHighscore();
-    renderViewHighscoreScreen();
-})
+    // Calls startQuiz fucntion when the start quiz button is pressed
+    startButton.addEventListener("click", startQuiz);
+    // Displays highscores screen and restarts quiz data, including the timer
+    viewHighscores.addEventListener("click", function () {
+        renderViewHighscoreScreen();
+        clearInterval(timer);
+        count = 100;
+        timerElement.textContent = "Score: " + count;
+    });
+    // Renders start screen when back button is pressed
+    backButtonEnter.addEventListener("click", function () {
+        renderStartScreen();
+    });
+    // Renders start screen when back button is pressed
+    backButtonView.addEventListener("click", function () {
+        renderStartScreen();
+    });
+    // Will call either isCorrect or isIncorrect based on your entered answer
+    answerOne.addEventListener("click", function () {
+        if (answerOne.textContent == correctAnswer) {
+            isCorrect();
+            generateQuestion();
+        } else {
+            isIncorrect();
+            generateQuestion();
+        }
+    });
+    // Will call either isCorrect or isIncorrect based on your entered answer
+    answerTwo.addEventListener("click", function () {
+        if (answerTwo.textContent == correctAnswer) {
+            isCorrect();
+            generateQuestion();
+        } else {
+            isIncorrect();
+            generateQuestion();
+        }
+    });
+    // Will call either isCorrect or isIncorrect based on your entered answer
+    answerThree.addEventListener("click", function () {
+        if (answerThree.textContent == correctAnswer) {
+            isCorrect();
+            generateQuestion();
+        } else {
+            isIncorrect();
+            generateQuestion();
+        }
+    });
+    // Will call either isCorrect or isIncorrect based on your entered answer
+    answerFour.addEventListener("click", function () {
+        if (answerFour.textContent == correctAnswer) {
+            isCorrect();
+            generateQuestion();
+        } else {
+            isIncorrect();
+            generateQuestion();
+        }
+    });
+    // Saves user/score to the localStorage
+    submitButton.addEventListener("click", function () {
+         setHighscore();
+         renderViewHighscoreScreen();
+         getHighscores();
+       
+    })
+    highscoresCl.addEventListener("click", function() {
+        clearHighscores();
+        renderViewHighscoreScreen();
+    });
+    stopQuiz.addEventListener("click", function() {
+        clearInterval(timer);
+        count = 100;
+        timerElement.textContent = "Score: " + count;
+        renderStartScreen();
+    })
+    // Calls init function to get quiz ready
+    init();
 
-init();

@@ -1,3 +1,8 @@
+:root {
+    --hover: #AED6F1;
+    --mainColor: #5DADE2;
+}
+
 * {
     padding: 0;
 }
@@ -23,7 +28,7 @@ h1 {
 }
 
 .info-header {
-    background-color: darkgray;
+    background-color:  var(--mainColor);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,7 +48,7 @@ h1 {
     
 }
 
-.enter-highscores-screen {
+.enter-highscores-screen, .view-highscores-screen {
     flex-direction: column;
     align-items: center;
 }
@@ -63,15 +68,27 @@ h1 {
 .enter-initials {
     width: 300px;
     height: 36px;
+    border-radius: 10px;
+    font-size: 32px;
+    text-align: center;
 }
 .clear-highscores {
     width: 150px;
     height: 40px;
+    background-color: var(--mainColor);
+    color: white;
+    border: none;
+    border-radius: 25px;
 }
 .submit-button, .back-button{
     width: 100px;
     height: 40px;
     padding: 0;
+    margin-left: 20px;
+    background-color: var(--mainColor);
+    color: white;
+    border: none;
+    border-radius: 25px;
 }
 
 .highscores-heading {
@@ -83,18 +100,49 @@ h1 {
     width: 100px;
     height: 40px;
     margin: 25px 0;
+    background-color: var(--mainColor);
+    color: white;
+    border: none;
+    border-radius: 25px;
 }
 
+.start-button:hover, .answer-button:hover, .submit-button:hover, .back-button:hover, .clear-highscores:hover {
+    background-color: var(--hover);
+    cursor: pointer;
+}
 .answer-button {
     height: 40px;
     margin-bottom: 40px;
     width: 400px;
-
+    background-color: var(--mainColor);
+    color: white;
+    border: none;
+    border-radius: 25px;
 }
 .result-outcome {
     display: none;
+    background-color: grey;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
 }
-.highscores-header:hover {
+.stop-quiz {
+    padding-right: 43px;
+}
+.highscores-header:hover, .stop-quiz:hover {
     cursor: pointer;
     color: white;
+}
+/* Positioning of highscores table */
+.result-list {
+    border-radius: 10px;
+    width: 500px;
+    margin-bottom: 50px;
+}
+.highscore {
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+    font-size: 20px;
+    list-style-type: none;
 }
