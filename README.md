@@ -12,8 +12,8 @@ scores will them be saved to a leaderboard which will be stored locally.
 
 ## Screenshot 
 
-![Code Quiz Web Page](.assets/images/home-screen.png)
-![Code Quiz Web Page](./assets/images/question-screen.png)
+![Code Quiz Web Page Home](./assets/images/home-screen.png)
+![Code Quiz Web Page Questions](./assets/images/question-screen.png)
 
 ## Resources 
 
