@@ -14,6 +14,7 @@ let resultUser = document.querySelector(".result-user");
 let resultScore = document.querySelector(".result-score");
 let highscoresCl = document.querySelector(".clear-highscores");
 let stopQuiz = document.querySelector(".stop-quiz");
+let whatQ = document.querySelector(".current");
 
 let selectedQuestion = document.querySelector(".question");
 let answerOne = document.querySelector(".answer-1");
@@ -134,6 +135,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionZero.answers.c;
         correctAnswer = questions.questionZero.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '1/10';
     } else if (currentQuestion == 1) {
         selectedQuestion.textContent = questions.questionOne.title;
         answerOne.textContent = questions.questionOne.answers.a;
@@ -142,6 +144,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionOne.answers.c;
         correctAnswer = questions.questionOne.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '2/10';
     } else if (currentQuestion == 2) {
         selectedQuestion.textContent = questions.questionTwo.title;
         answerOne.textContent = questions.questionTwo.correctAnswer;
@@ -150,6 +153,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionTwo.answers.c;
         correctAnswer = questions.questionTwo.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '3/10';
     } else if (currentQuestion == 3) {
         selectedQuestion.textContent = questions.questionThree.title;
         answerOne.textContent = questions.questionThree.answers.a;
@@ -158,6 +162,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionThree.answers.c;
         correctAnswer = questions.questionThree.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '4/10';
     } else if (currentQuestion == 4) {
         selectedQuestion.textContent = questions.questionFour.title;
         answerOne.textContent = questions.questionFour.answers.a;
@@ -166,6 +171,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionFour.correctAnswer;
         correctAnswer = questions.questionFour.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '5/10';
     } else if (currentQuestion == 5) {
         selectedQuestion.textContent = questions.questionFive.title;
         answerOne.textContent = questions.questionFive.answers.a;
@@ -174,6 +180,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionFive.answers.c;
         correctAnswer = questions.questionFive.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '6/10';
     } else if (currentQuestion == 6) {
         selectedQuestion.textContent = questions.questionSix.title;
         answerOne.textContent = questions.questionSix.correctAnswer;
@@ -182,6 +189,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionSix.answers.c;
         correctAnswer = questions.questionSix.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '7/10';
     } else if (currentQuestion == 7) {
         selectedQuestion.textContent = questions.questionSeven.title;
         answerOne.textContent = questions.questionSeven.answers.a;
@@ -190,6 +198,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionSeven.answers.c;
         correctAnswer = questions.questionSeven.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '8/10';
     } else if (currentQuestion == 8) {
         selectedQuestion.textContent = questions.questionEight.title;
         answerOne.textContent = questions.questionEight.answers.a;
@@ -198,6 +207,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionEight.answers.c;
         correctAnswer = questions.questionEight.correctAnswer;
         currentQuestion++;
+        whatQ.textContent = '9/10';
     } else if (currentQuestion == 9) {
         selectedQuestion.textContent = questions.questionNine.title;
         answerOne.textContent = questions.questionNine.answers.a;
@@ -206,6 +216,7 @@ function generateQuestion() {
         answerFour.textContent = questions.questionNine.correctAnswer;
         correctAnswer = questions.questionNine.correctAnswer;
         currentQuestion = 10;
+        whatQ.textContent = '10/10';
     } else if (currentQuestion == 10) {
         renderEnterHighscoreScreen();
         complete = true;

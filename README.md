@@ -5,11 +5,16 @@
 ## Description 
 
 This is my self designed code quiz.
-click on the startquiz button and youll be shown a series of queastions. 
-answer the questions before the time runs out is the aim of the game.
-scores will them be saved to a leaderboard which will be stored locally.
+click on the startquiz button and you'll be shown a series of queastions. 
+Answer the questions before the time runs out is the aim of the game.
+Scores will them be saved to a leaderboard which will be stored locally.
 
+## Technologies Used 
 
+- Javascript
+- CSS
+- HTML
+  
 ## Screenshot 
 
 ![Code Quiz Web Page Home](./assets/images/home-screen.png)
@@ -18,3 +23,34 @@ scores will them be saved to a leaderboard which will be stored locally.
 ## Resources 
 
 **https://mckayjalex.github.io/code-quiz/**
+
+## Contact Information
+
+Mobile: 0436 857 403  
+Email: alexjosephmckay@gmail.com  
+GitHub: **https://github.com/mckayjalex**  
+Linkin: **https://www.linkedin.com/in/alex-mckayy**
+
+## License 
+
+MIT License
+
+Copyright (c) [2022] [Alex McKay]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
